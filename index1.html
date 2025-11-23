@@ -1,156 +1,297 @@
+<!DOCTYPE html> 
+<html lang="en">
 <head>
-<link rel="stylesheet" href="styles1.css">
+  <meta charset="UTF-8">
+  <title>Build Your Resume</title>
+  <link rel="stylesheet" href="styles1.css">
 </head>
 <body>
-<div id="javascript_header"></div>
-<form id="myform" onsubmit="storeData()" action="template1.html">
-  <div class="form__header">
-    <h1>Build Your Resume</h1>
-    <p>Enter the fields below to generate an html resume</p>
+  <!-- Background image -->
+  <img src="assets/background.jpg" alt="" class="bg-img">
+
+  <div id="javascript_header"></div>
+
+  <form id="resumeForm">
+    <div class="form__header">
+      <h1>Build Your Resume</h1>
+      <p>Enter your details below to generate your resume</p>
+    </div>
+      <div class="form-group">
+    <label for="profileImg">Upload Photo</label>
+    <input type="file" id="profileImg" accept="image/*">
+    <img id="imgPreview" class="preview" alt="">
   </div>
+    <!-- PERSONAL DETAILS -->
+    <h2>Personal Details</h2>
 
-  <h2>Personal Details</h2>
-
-  <div class="form-group">
-    <label for="name">Full Name <span>*</span></label>
-    <input type="text" name="name" id="name" placeholder="Enter your name">
-    <div id="name__error" class="error"></div>
-  </div>
-
-  <div class="form-group">
-    <label for="address">Address</label>
-    <input type="text" name="address" id="address" placeholder="Enter your address">
-  </div>
-
-  <div class="form-group">
-    <label for="phone">Phone</label>
-    <input type="text" name="phone" id="phone" placeholder="Enter Phone number">
-  </div>
-
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="text" name="email" id="email" placeholder="Enter Mail">
-  </div>
-
-  <div class="form-group">
-    <label for="about">About You</label>
-    <textarea name="about" id="about"
-              placeholder="Say about yourself"></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="career">Career Objectives</label>
-    <textarea name="career" id="career"
-              placeholder="One or two sentences about what you wish to accomplish in your career"></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="education">Education</label>
-    <textarea name="education" id="education"
-              placeholder="List any completed high school, college, or other educational programs"></textarea>
-  </div>
-
-  <div class="line-break"></div>
-
-  <h2>Work Experience</h2>
-
-  <h3>Most Recent Job</h3>
-
-  <div class="form-date-group">
     <div class="form-group">
-      <label for="job-1__start">Start Date</label>
-      <input type="date" name="job-1__start" id="job-1__start">
+      <label for="name">Full Name <span>*</span></label>
+      <input type="text" name="name" id="name" placeholder="Enter your name" required>
+      <div id="name__error" class="error"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input type="text" name="address" id="address" placeholder="Enter your address">
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="text" name="phone" id="phone" placeholder="Enter phone number">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" placeholder="Enter email">
+    </div>
+
+    <div class="form-group">
+      <label for="about">About You</label>
+      <textarea name="about" id="about" placeholder="Short summary about yourself"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="career">Career Objective</label>
+      <textarea name="career" id="career"
+                placeholder="One or two sentences about your career goals"></textarea>
+    </div>
+
+    <div class="line-break"></div>
+
+    <!-- EDUCATION -->
+    <h2>Education</h2>
+
+    <h3>Most Recent Education</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="edu1_course">Course / Degree</label>
+        <input type="text" id="edu1_course" placeholder="e.g., B.Tech in Information Technology">
+      </div>
+      <div class="form-group">
+        <label for="edu1_institution">College / School</label>
+        <input type="text" id="edu1_institution" placeholder="e.g., MVGR College of Engineering">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="edu1_start">Start Year</label>
+        <input type="text" id="edu1_start" placeholder="e.g., 2021">
+      </div>
+      <div class="form-group">
+        <label for="edu1_end">End Year</label>
+        <input type="text" id="edu1_end" placeholder="e.g., 2025">
+      </div>
+    </div>
+
+    <h3>Previous Education</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="edu2_course">Course / Class</label>
+        <input type="text" id="edu2_course" placeholder="e.g., Intermediate (MPC)">
+      </div>
+      <div class="form-group">
+        <label for="edu2_institution">College / School</label>
+        <input type="text" id="edu2_institution" placeholder="e.g., Sri Chaitanya Junior College">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="edu2_start">Start Year</label>
+        <input type="text" id="edu2_start" placeholder="e.g., 2019">
+      </div>
+      <div class="form-group">
+        <label for="edu2_end">End Year</label>
+        <input type="text" id="edu2_end" placeholder="e.g., 2021">
+      </div>
+    </div>
+
+    <div class="line-break"></div>
+
+    <!-- WORK EXPERIENCE -->
+    <h2>Work Experience</h2>
+
+    <h3>Most Recent Job / Internship</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="job1_start">Start Date</label>
+        <input type="date" id="job1_start">
+      </div>
+      <div class="form-group">
+        <label for="job1_end">End Date</label>
+        <input type="date" id="job1_end">
+      </div>
     </div>
     <div class="form-group">
-      <label for="job-1__end">End Date</label>
-      <input type="date" name="job-1__end" id="job-1__end">
+      <label for="job1_details">Position Details</label>
+      <textarea id="job1_details"
+                placeholder="Role, company, key responsibilities and impact"></textarea>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label for="job-1__details">Position Details</label>
-    <textarea name="job-1__details" id="job-1__details"></textarea>
-  </div>
+    <div class="line-break"></div>
 
-  <div class="line-break"></div>
-
-  <h3>Past Job</h3>
-
-  <div class="form-date-group">
-    <div class="form-group">
-      <label for="job-2__start">Start Date</label>
-      <input type="date" name="job-2__start" id="job-2__start">
-    </div>
-    <div class="form-group">
-      <label for="job-2__end">End Date</label>
-      <input type="date" name="job-2__end" id="job-2__end">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="job-2__details">Position Details</label>
-    <textarea name="job-2__details" id="job-2__details"></textarea>
-  </div>
-
-  <div class="line-break"></div>
-
-  <h3>Another Past Job</h3>
-
-  <div class="form-date-group">
-    <div class="form-group">
-      <label for="job-3__start">Start Date</label>
-      <input type="date" name="job-3__start" id="job-3__start">
+    <h3>Past Job / Project</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="job2_start">Start Date</label>
+        <input type="date" id="job2_start">
+      </div>
+      <div class="form-group">
+        <label for="job2_end">End Date</label>
+        <input type="date" id="job2_end">
+      </div>
     </div>
     <div class="form-group">
-      <label for="job-3__end">End Date</label>
-      <input type="date" name="job-3__end" id="job-3__end">
+      <label for="job2_details">Position Details</label>
+      <textarea id="job2_details"
+                placeholder="Role, company, key responsibilities and impact"></textarea>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label for="job-3__details">Position Details</label>
-    <textarea name="job-3__details" id="job-3__details"></textarea>
-  </div>
+    <div class="line-break"></div>
 
-  <div class="line-break"></div>
+    <h3>Another Past Job / Project</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="job3_start">Start Date</label>
+        <input type="date" id="job3_start">
+      </div>
+      <div class="form-group">
+        <label for="job3_end">End Date</label>
+        <input type="date" id="job3_end">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="job3_details">Position Details</label>
+      <textarea id="job3_details"
+                placeholder="Role, company, key responsibilities and impact"></textarea>
+    </div>
 
-  <div class="form-group">
-    <label for="references">References</label>
-    <textarea name="references" id="references"></textarea>
-  </div>
+    <div class="line-break"></div>
 
-  <div class="line-break"></div>
-	
-  <button href="#sec"  id="btn">
-    Create
-  </button>
+    <!-- SKILLS -->
+    <h2>Skills</h2>
 
-</form>
-<script>
-  function storeData() {
-            // Get the input values
-            const name = document.getElementById('name').value;
-            const address = document.getElementById('address').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const about = document.getElementById('about').value;
-            const career = document.getElementById('career').value;
-            const education = document.getElementById('education').value;
-            const job_1_start = document.getElementById('job-1__start').value;
-            const job_1_end = document.getElementById('job-1__end').value;
-            const job_2_start = document.getElementById('job-2__start').value;
-            const job_2_end = document.getElementById('job-2__end').value;
-            const job_3_start = document.getElementById('job-3__start').value;
-            const job_3_end = document.getElementById('job-3__end').value;
-            const references = document.getElementById('references').value;
-            
-            // Store the values in localStorage
-            localStorage.setItem('name', name);
-            localStorage.setItem('email', email);
-            localStorage.setItem('phone', phone);
-            localStorage.setItem('address', address);
+    <div class="form-group">
+      <label for="skills">Skills</label>
+      <textarea name="skills" id="skills"
+                placeholder="List your technical and soft skills (e.g., HTML, CSS, JS, communication)"></textarea>
+    </div>
 
-        }
+    <div class="line-break"></div>
+
+    <!-- REFERENCES -->
+    <div class="form-group">
+      <label for="references">References</label>
+      <textarea name="references" id="references"
+                placeholder="Optional: references or 'Available on request'"></textarea>
+    </div>
+
+    <div class="line-break"></div>
+
+    <button type="submit" id="btn">
+      Create Resume
+    </button>
+  </form>
+
+  <script>
+  const form = document.getElementById('resumeForm');
+  const profileInput = document.getElementById('profileImg');
+  const preview = document.getElementById('imgPreview');
+
+  // Image preview
+  profileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = 'block';
+    }
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Clear old error
+    document.getElementById('name__error').textContent = '';
+
+    // Basic fields
+    const name = document.getElementById('name').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const about = document.getElementById('about').value.trim();
+    const career = document.getElementById('career').value.trim();
+    const skills = document.getElementById('skills').value.trim();
+    const references = document.getElementById('references').value.trim();
+
+    if (!name) {
+      document.getElementById('name__error').textContent = 'Name is required';
+      return;
+    }
+
+    // EDUCATION fields
+    const edu1_course = document.getElementById('edu1_course').value.trim();
+    const edu1_institution = document.getElementById('edu1_institution').value.trim();
+    const edu1_start = document.getElementById('edu1_start').value.trim();
+    const edu1_end = document.getElementById('edu1_end').value.trim();
+
+    const edu2_course = document.getElementById('edu2_course').value.trim();
+    const edu2_institution = document.getElementById('edu2_institution').value.trim();
+    const edu2_start = document.getElementById('edu2_start').value.trim();
+    const edu2_end = document.getElementById('edu2_end').value.trim();
+
+    let education = '';
+
+    if (edu1_course || edu1_institution || edu1_start || edu1_end) {
+      education += `${edu1_course} — ${edu1_institution} (${edu1_start} - ${edu1_end})\n`;
+    }
+
+    if (edu2_course || edu2_institution || edu2_start || edu2_end) {
+      education += `${edu2_course} — ${edu2_institution} (${edu2_start} - ${edu2_end})\n`;
+    }
+
+    // WORK EXPERIENCE fields
+    const job1_start = document.getElementById('job1_start').value.trim();
+    const job1_end = document.getElementById('job1_end').value.trim();
+    const job1_details = document.getElementById('job1_details').value.trim();
+
+    const job2_start = document.getElementById('job2_start').value.trim();
+    const job2_end = document.getElementById('job2_end').value.trim();
+    const job2_details = document.getElementById('job2_details').value.trim();
+
+    const job3_start = document.getElementById('job3_start').value.trim();
+    const job3_end = document.getElementById('job3_end').value.trim();
+    const job3_details = document.getElementById('job3_details').value.trim();
+
+    let experience = '';
+
+    if (job1_start || job1_end || job1_details) {
+      experience += `Most Recent Job (${job1_start} - ${job1_end})\n${job1_details}\n\n`;
+    }
+
+    if (job2_start || job2_end || job2_details) {
+      experience += `Past Job (${job2_start} - ${job2_end})\n${job2_details}\n\n`;
+    }
+
+    if (job3_start || job3_end || job3_details) {
+      experience += `Another Past Job (${job3_start} - ${job3_end})\n${job3_details}\n\n`;
+    }
+
+    // Store in localStorage with clear keys
+    localStorage.setItem('rb_profile', preview.src || '');
+    localStorage.setItem('rb_name', name);
+    localStorage.setItem('rb_address', address);
+    localStorage.setItem('rb_phone', phone);
+    localStorage.setItem('rb_email', email);
+    localStorage.setItem('rb_about', about);
+    localStorage.setItem('rb_career', career);
+    localStorage.setItem('rb_education', education);
+    localStorage.setItem('rb_experience', experience);
+    localStorage.setItem('rb_skills', skills);
+    localStorage.setItem('rb_references', references);
+
+    // Go to resume template page
+    window.location.href = 'template1.html';
+  });
 </script>
 
 </body>
+</html>
