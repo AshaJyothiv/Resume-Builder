@@ -1,0 +1,264 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("form");
+  const downloadButton = document.getElementById("download-button");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Collect user input
+    const name = document.getElementById("name").value;
+    const address = document.getElementById("address").value;
+    const phone = document.getElementById("phone").value;
+    const email = document.getElementById("email").value;
+    const about = document.getElementById("about").value;
+    const career = document.getElementById("career").value;
+    const education = document.getElementById("education").value;
+
+    // Generate HTML template for resume
+    const resumeTemplate = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Resume Template</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <style>
+        html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+      </style>
+    </head>
+    <body class="w3-light-grey">
+    
+    <!-- Page Container -->
+    <div class="w3-content w3-margin-top" style="max-width:1400px;">
+    
+      <!-- The Grid -->
+      <div class="w3-row-padding">
+      
+        <!-- Left Column -->
+        <div class="w3-third">
+        
+          <div class="w3-white w3-text-grey w3-card-4">
+            <div class="w3-display-container">
+              <img src="https://www.w3schools.com/w3images/avatar_hat.jpg" style="width:100%" alt="Avatar">
+              <div class="w3-display-bottomleft w3-container w3-text-black">
+                <p><span id="namePlaceholder">John Doe</span></p>
+              </div>
+            </div>
+            <div class="w3-container">
+              <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i><span id="jobTitlePlaceholder">Designer</span></p>
+              <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i><span id="addressPlaceholder">London, UK</span></p>
+              <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i><span id="emailPlaceholder">ex@mail.com</span></p>
+              <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i><span id="phonePlaceholder">1224435534</span></p>
+              <hr>
+    
+              <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
+              <p><span id="skill1Placeholder">Adobe Photoshop</span></p>
+              <div class="w3-light-grey w3-round-xlarge w3-small">
+                <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%">90%</div>
+              </div>
+              <p><span id="skill2Placeholder">Photography</span></p>
+              <div class="w3-light-grey w3-round-xlarge w3-small">
+                <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:80%">
+                  <div class="w3-center w3-text-white">80%</div>
+                </div>
+              </div>
+              <p><span id="skill3Placeholder">Illustrator</span></p>
+              <div class="w3-light-grey w3-round-xlarge w3-small">
+                <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:75%">75%</div>
+              </div>
+              <p><span id="skill4Placeholder">Media</span></p>
+              <div class="w3-light-grey w3-round-xlarge w3-small">
+                <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:50%">50%</div>
+              </div>
+              <br>
+    
+              <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Languages</b></p>
+              <p>English</p>
+              <div class="w3-light-grey w3-round-xlarge">
+                <div class="w3-round-xlarge w3-teal" style="height:24px;width:100%"></div>
+              </div>
+              <p>Spanish</p>
+              <div class="w3-light-grey w3-round-xlarge">
+                <div class="w3-round-xlarge w3-teal" style="height:24px;width:55%"></div>
+              </div>
+              <p>German</p>
+              <div class="w3-light-grey w3-round-xlarge">
+                <div class="w3-round-xlarge w3-teal" style="height:24px;width:25%"></div>
+              </div>
+              <br>
+            </div>
+          </div><br>
+    
+        <!-- End Left Column -->
+        </div>
+    
+        <!-- Right Column -->
+        <div class="w3-twothird">
+        
+          <div class="w3-container w3-card w3-white w3-margin-bottom">
+            <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Work Experience</h2>
+            <div class="w3-container">
+              <h5 class="w3-opacity"><b><span id="jobTitle1Placeholder">Front End Developer / w3schools.com</span></b></h5>
+              <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><span id="jobDate1Placeholder">Jan 2015 - Current</span></h6>
+              <p><span id="jobDescription1Placeholder">Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</span></p>
+              <hr>
+            </div>
+            <div class="w3-container">
+              <h5 class="w3-opacity"><b><span id="jobTitle2Placeholder">Web Developer / something.com</span></b></h5>
+              <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><span id="jobDate2Placeholder">Mar 2012 - Dec 2014</span></h6>
+              <p><span id="jobDescription2Placeholder">Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</span></p>
+              <hr>
+            </div>
+            <div class="w3-container">
+              <h5 class="w3-opacity"><b><span id="jobTitle3Placeholder">Graphic Designer / designsomething.com</span></b></h5>
+              <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><span id="jobDate3Placeholder">Jun 2010 - Mar 2012</span></h6>
+              <p><span id="jobDescription3Placeholder">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span></p><br>
+            </div>
+          </div>
+    
+          <div class="w3-container w3-card w3-white">
+            <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
+            <div class="w3-container">
+              <h5 class="w3-opacity"><b><span id="educationTitle1Placeholder">W3Schools.com</span></b></h5>
+              <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><span id="educationDate1Placeholder">Forever</span></h6>
+              <p><span id="educationDescription1Placeholder">Web Development! All I need to know in one place</span></p>
+              <hr>
+            </div>
+            <div class="w3-container">
+              <h5 class="w3-opacity"><b><span id="educationTitle2Placeholder">London Business School</span></b></h5>
+              <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><span id="educationDate2Placeholder">2013 - 2015</span></h6>
+              <p><span id="educationDescription2Placeholder">Master Degree</span></p>
+              <hr>
+            </div>
+            <div class="w3-container">
+              <h5 class="w3-opacity"><b><span id="educationTitle3Placeholder">School of Coding</span></b></h5>
+              <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i><span id="educationDate3Placeholder">2010 - 2013</span></h6>
+              <p><span id="educationDescription3Placeholder">Bachelor Degree</span></p><br>
+            </div>
+          </div>
+    
+        <!-- End Right Column -->
+        </div>
+        
+      <!-- End Grid -->
+      </div>
+      
+      <!-- End Page Container -->
+    </div>
+    
+    <footer class="w3-container w3-teal w3-center w3-margin-top">
+      <p>Find me on social media.</p>
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-snapchat w3-hover-opacity"></i>
+      <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+      <i class="fa fa-twitter w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </footer>
+    <script>
+      // JavaScript code to populate the placeholders with user input
+      const urlParams = new URLSearchParams(window.location.search);
+      const name = urlParams.get("name");
+      const jobTitle = urlParams.get("jobtitle");
+      const address = urlParams.get("address");
+      const email = urlParams.get("email");
+      const phone = urlParams.get("phone");
+      const skill1 = urlParams.get("skill1");
+      const skill1Level = urlParams.get("skill1level");
+      const skill2 = urlParams.get("skill2");
+      const skill2Level = urlParams.get("skill2level");
+      const skill3 = urlParams.get("skill3");
+      const skill3Level = urlParams.get("skill3level");
+      const skill4 = urlParams.get("skill4");
+      const skill4Level = urlParams.get("skill4level");
+    
+      const jobTitle1 = urlParams.get("jobtitle1");
+      const jobDate1 = urlParams.get("jobdate1");
+      const jobDescription1 = urlParams.get("jobdescription1");
+      const jobTitle2 = urlParams.get("jobtitle2");
+      const jobDate2 = urlParams.get("jobdate2");
+      const jobDescription2 = urlParams.get("jobdescription2");
+      const jobTitle3 = urlParams.get("jobtitle3");
+      const jobDate3 = urlParams.get("jobdate3");
+      const jobDescription3 = urlParams.get("jobdescription3");
+    
+      const educationTitle1 = urlParams.get("educationtitle1");
+      const educationDate1 = urlParams.get("educationdate1");
+      const educationDescription1 = urlParams.get("educationdescription1");
+      const educationTitle2 = urlParams.get("educationtitle2");
+      const educationDate2 = urlParams.get("educationdate2");
+      const educationDescription2 = urlParams.get("educationdescription2");
+      const educationTitle3 = urlParams.get("educationtitle3");
+      const educationDate3 = urlParams.get("educationdate3");
+      const educationDescription3 = urlParams.get("educationdescription3");
+    
+      document.getElementById("namePlaceholder").textContent = name;
+      document.getElementById("jobTitlePlaceholder").textContent = jobTitle;
+      document.getElementById("addressPlaceholder").textContent = address;
+      document.getElementById("emailPlaceholder").textContent = email;
+      document.getElementById("phonePlaceholder").textContent = phone;
+    
+      document.getElementById("skill1Placeholder").textContent = skill1;
+      document.getElementById("skill1LevelPlaceholder").style.width = skill1Level;
+      document.getElementById("skill2Placeholder").textContent = skill2;
+      document.getElementById("skill2LevelPlaceholder").style.width = skill2Level;
+      document.getElementById("skill3Placeholder").textContent = skill3;
+      document.getElementById("skill3LevelPlaceholder").style.width = skill3Level;
+      document.getElementById("skill4Placeholder").textContent = skill4;
+      document.getElementById("skill4LevelPlaceholder").style.width = skill4Level;
+    
+      document.getElementById("jobTitle1Placeholder").textContent = jobTitle1;
+      document.getElementById("jobDate1Placeholder").textContent = jobDate1;
+      document.getElementById("jobDescription1Placeholder").textContent = jobDescription1;
+    
+      document.getElementById("jobTitle2Placeholder").textContent = jobTitle2;
+      document.getElementById("jobDate2Placeholder").textContent = jobDate2;
+      document.getElementById("jobDescription2Placeholder").textContent = jobDescription2;
+    
+      document.getElementById("jobTitle3Placeholder").textContent = jobTitle3;
+      document.getElementById("jobDate3Placeholder").textContent = jobDate3;
+      document.getElementById("jobDescription3Placeholder").textContent = jobDescription3;
+    
+      document.getElementById("educationTitle1Placeholder").textContent = educationTitle1;
+      document.getElementById("educationDate1Placeholder").textContent = educationDate1;
+      document.getElementById("educationDescription1Placeholder").textContent = educationDescription1;
+    
+      document.getElementById("educationTitle2Placeholder").textContent = educationTitle2;
+      document.getElementById("educationDate2Placeholder").textContent = educationDate2;
+      document.getElementById("educationDescription2Placeholder").textContent = educationDescription2;
+    
+      document.getElementById("educationTitle3Placeholder").textContent = educationTitle3;
+      document.getElementById("educationDate3Placeholder").textContent = educationDate3;
+      document.getElementById("educationDescription3Placeholder").textContent = educationDescription3;
+    </script>
+    
+    </body>
+    </html>
+    
+    `;
+
+    document.getElementById('create-resume').addEventListener("click", (e) => {
+      e.preventDefault()
+      buildResume(getState())
+    })
+
+    // Create a Blob to trigger download
+    const blob = new Blob([resumeTemplate], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+
+    // Trigger download
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "resume.html";
+    a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+  });
+
+  // Add additional event listeners and functionality as needed
+});
