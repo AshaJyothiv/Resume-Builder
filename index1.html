@@ -1,14 +1,11 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Build Your Resume</title>
-  <link rel="stylesheet" href="styles1.css">
+  <link rel="stylesheet" href="styles1.css" />
 </head>
 <body>
-  <!-- Background image -->
-  <img src="assets/background.jpg" alt="" class="bg-img">
-
   <div id="javascript_header"></div>
 
   <form id="resumeForm">
@@ -16,33 +13,29 @@
       <h1>Build Your Resume</h1>
       <p>Enter your details below to generate your resume</p>
     </div>
-      <div class="form-group">
-    <label for="profileImg">Upload Photo</label>
-    <input type="file" id="profileImg" accept="image/*">
-    <img id="imgPreview" class="preview" alt="">
-  </div>
-    <!-- PERSONAL DETAILS -->
-    <h2>Personal Details</h2>
 
     <div class="form-group">
+      <label for="profileImg">Upload Photo</label>
+      <input type="file" id="profileImg" accept="image/*" />
+      <img id="imgPreview" class="preview" alt="Profile preview" />
+    </div>
+
+    <h2>Personal Details</h2>
+    <div class="form-group">
       <label for="name">Full Name <span>*</span></label>
-      <input type="text" name="name" id="name" placeholder="Enter your name" required>
+      <input type="text" name="name" id="name" placeholder="Enter your name" required />
       <div id="name__error" class="error"></div>
     </div>
 
-    <div class="form-group">
-      <label for="address">Address</label>
-      <input type="text" name="address" id="address" placeholder="Enter your address">
+    <div class="row">
+      <div class="form-group"><label for="address">Address</label><input type="text" id="address" placeholder="Enter your address" /></div>
+      <div class="form-group"><label for="phone">Phone</label><input type="text" id="phone" placeholder="Enter phone number" /></div>
+      <div class="form-group"><label for="email">Email</label><input type="email" id="email" placeholder="Enter email" /></div>
     </div>
 
     <div class="form-group">
-      <label for="phone">Phone</label>
-      <input type="text" name="phone" id="phone" placeholder="Enter phone number">
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email" placeholder="Enter email">
+      <label for="website">Website / Portfolio Link</label>
+      <input type="url" name="website" id="website" placeholder="https://your-portfolio.example" />
     </div>
 
     <div class="form-group">
@@ -52,246 +45,403 @@
 
     <div class="form-group">
       <label for="career">Career Objective</label>
-      <textarea name="career" id="career"
-                placeholder="One or two sentences about your career goals"></textarea>
+      <textarea name="career" id="career" placeholder="One or two sentences about your career goals"></textarea>
     </div>
 
     <div class="line-break"></div>
 
-    <!-- EDUCATION -->
+    <!-- EDUCATION (kept aggregated or dynamic as before) -->
     <h2>Education</h2>
-
-    <h3>Most Recent Education</h3>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="edu1_course">Course / Degree</label>
-        <input type="text" id="edu1_course" placeholder="e.g., B.Tech in Information Technology">
-      </div>
-      <div class="form-group">
-        <label for="edu1_institution">College / School</label>
-        <input type="text" id="edu1_institution" placeholder="e.g., MVGR College of Engineering">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="edu1_start">Start Year</label>
-        <input type="text" id="edu1_start" placeholder="e.g., 2021">
-      </div>
-      <div class="form-group">
-        <label for="edu1_end">End Year</label>
-        <input type="text" id="edu1_end" placeholder="e.g., 2025">
-      </div>
-    </div>
-
-    <h3>Previous Education</h3>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="edu2_course">Course / Class</label>
-        <input type="text" id="edu2_course" placeholder="e.g., Intermediate (MPC)">
-      </div>
-      <div class="form-group">
-        <label for="edu2_institution">College / School</label>
-        <input type="text" id="edu2_institution" placeholder="e.g., Sri Chaitanya Junior College">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="edu2_start">Start Year</label>
-        <input type="text" id="edu2_start" placeholder="e.g., 2019">
-      </div>
-      <div class="form-group">
-        <label for="edu2_end">End Year</label>
-        <input type="text" id="edu2_end" placeholder="e.g., 2021">
-      </div>
-    </div>
+    <div id="educationList"></div>
+    <button type="button" id="addEducationBtn" class="small-btn add-btn">+ Add Education</button>
 
     <div class="line-break"></div>
 
-    <!-- WORK EXPERIENCE -->
-    <h2>Work Experience</h2>
-
-    <h3>Most Recent Job / Internship</h3>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="job1_start">Start Date</label>
-        <input type="date" id="job1_start">
-      </div>
-      <div class="form-group">
-        <label for="job1_end">End Date</label>
-        <input type="date" id="job1_end">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="job1_details">Position Details</label>
-      <textarea id="job1_details"
-                placeholder="Role, company, key responsibilities and impact"></textarea>
-    </div>
+    <!-- INTERNSHIPS (individual dynamic) -->
+    <h2 class="section-label">Internships</h2>
+    <div id="internshipList"></div>
+    <button type="button" id="addInternshipBtn" class="small-btn add-btn">+ Add Internship</button>
 
     <div class="line-break"></div>
 
-    <h3>Past Job / Project</h3>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="job2_start">Start Date</label>
-        <input type="date" id="job2_start">
-      </div>
-      <div class="form-group">
-        <label for="job2_end">End Date</label>
-        <input type="date" id="job2_end">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="job2_details">Position Details</label>
-      <textarea id="job2_details"
-                placeholder="Role, company, key responsibilities and impact"></textarea>
-    </div>
+    <!-- PROJECTS (individual dynamic) -->
+    <h2 class="section-label">Projects</h2>
+    <div id="projectList"></div>
+    <button type="button" id="addProjectBtn" class="small-btn add-btn">+ Add Project</button>
 
     <div class="line-break"></div>
 
-    <h3>Another Past Job / Project</h3>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="job3_start">Start Date</label>
-        <input type="date" id="job3_start">
-      </div>
-      <div class="form-group">
-        <label for="job3_end">End Date</label>
-        <input type="date" id="job3_end">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="job3_details">Position Details</label>
-      <textarea id="job3_details"
-                placeholder="Role, company, key responsibilities and impact"></textarea>
-    </div>
+    <!-- JOBS (individual dynamic) -->
+    <h2 class="section-label">Jobs</h2>
+    <div id="jobList"></div>
+    <button type="button" id="addJobBtn" class="small-btn add-btn">+ Add Job</button>
 
     <div class="line-break"></div>
 
-    <!-- SKILLS -->
     <h2>Skills</h2>
-
     <div class="form-group">
       <label for="skills">Skills</label>
-      <textarea name="skills" id="skills"
-                placeholder="List your technical and soft skills (e.g., HTML, CSS, JS, communication)"></textarea>
+      <textarea name="skills" id="skills" placeholder="List your technical and soft skills (e.g., HTML, CSS, JS, communication)"></textarea>
     </div>
 
     <div class="line-break"></div>
 
-    <!-- REFERENCES -->
     <div class="form-group">
       <label for="references">References</label>
-      <textarea name="references" id="references"
-                placeholder="Optional: references or 'Available on request'"></textarea>
+      <textarea name="references" id="references" placeholder="Optional: references or 'Available on request'"></textarea>
+    </div>
+
+    <div style="margin-top:8px;">
+      <button type="button" id="btnReset">Clear Saved Data</button>
     </div>
 
     <div class="line-break"></div>
-
-    <button type="submit" id="btn">
-      Create Resume
-    </button>
+    <button type="submit" id="btn">Create Resume</button>
   </form>
 
-  <script>
-  const form = document.getElementById('resumeForm');
-  const profileInput = document.getElementById('profileImg');
-  const preview = document.getElementById('imgPreview');
+<script>
+/* ======== Namespaced keys ======== */
+const ks = {
+  profile: 'rb_profile',
+  name: 'rb_name',
+  address: 'rb_address',
+  phone: 'rb_phone',
+  email: 'rb_email',
+  about: 'rb_about',
+  career: 'rb_career',
+  educationArr: 'rb_education_arr',
+  internshipsArr: 'rb_internships_arr',
+  projectsArr: 'rb_projects_arr',
+  jobsArr: 'rb_jobs_arr',
+  skills: 'rb_skills',
+  references: 'rb_references',
+  website: 'rb_website',
+  savedAt: 'rb_savedAt'
+};
 
-  // Image preview
-  profileInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      preview.src = URL.createObjectURL(file);
-      preview.style.display = 'block';
-    }
+/* ======== Utility ======== */
+const $ = id => document.getElementById(id);
+const uid = () => 'id_' + Math.random().toString(36).slice(2,9);
+
+function getArr(key) {
+  try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : []; } catch(e) { return []; }
+}
+function setArr(key, arr) { localStorage.setItem(key, JSON.stringify(arr)); }
+
+/* ======== Elements ======== */
+const educationList = $('educationList');
+const internshipList = $('internshipList');
+const projectList = $('projectList');
+const jobList = $('jobList');
+
+const addEducationBtn = $('addEducationBtn');
+const addInternshipBtn = $('addInternshipBtn');
+const addProjectBtn = $('addProjectBtn');
+const addJobBtn = $('addJobBtn');
+
+const profileInput = $('profileImg');
+const preview = $('imgPreview');
+const resetBtn = $('btnReset');
+const form = $('resumeForm');
+
+/* ======== Entry generators ======== */
+function escapeHtml(s){ return String(s||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'); }
+
+/* Education entry (same as before) */
+function createEducationEntry(obj = {}) {
+  const id = obj.id || uid();
+  const div = document.createElement('div');
+  div.className = 'entry';
+  div.dataset.id = id;
+  div.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+      <strong>Education</strong>
+      <div><button type="button" class="small-btn remove-education">Remove</button></div>
+    </div>
+    <div class="row">
+      <div class="form-group"><label>Course / Degree</label><input type="text" class="edu-course" placeholder="" value="${escapeHtml(obj.course||'')}" /></div>
+      <div class="form-group"><label>Institution</label><input type="text" class="edu-institution" placeholder="" value="${escapeHtml(obj.institution||'')}" /></div>
+    </div>
+    <div class="row">
+      <div class="form-group"><label>Start Year</label><input type="text" class="edu-start" placeholder="" value="${escapeHtml(obj.start||'')}" /></div>
+      <div class="form-group"><label>End Year</label><input type="text" class="edu-end" placeholder="" value="${escapeHtml(obj.end||'')}" /></div>
+    </div>
+  `;
+  return div;
+}
+
+/* Internship entry (individual) */
+function createInternshipEntry(obj = {}) {
+  const id = obj.id || uid();
+  const div = document.createElement('div');
+  div.className = 'entry';
+  div.dataset.id = id;
+  div.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+      <strong>Internship</strong>
+      <div><button type="button" class="small-btn remove-internship danger">Remove</button></div>
+    </div>
+    <div class="row">
+      <div class="form-group"><label>Role / Title</label><input type="text" class="intern-title" placeholder="" value="${escapeHtml(obj.title||'')}" /></div>
+      <div class="form-group"><label>Company / Org</label><input type="text" class="intern-company" placeholder="" value="${escapeHtml(obj.company||'')}" /></div>
+    </div>
+    <div class="row">
+      <div class="form-group"><label>Start Date</label><input type="date" class="intern-start" value="${escapeHtml(obj.start||'')}" /></div>
+      <div class="form-group"><label>End Date</label><input type="date" class="intern-end" value="${escapeHtml(obj.end||'')}" /></div>
+    </div>
+    <div class="form-group"><label>Details</label><textarea class="intern-details" placeholder="Key responsibilities and impact">${escapeHtml(obj.details||'')}</textarea></div>
+  `;
+  return div;
+}
+
+/* Project entry (individual) */
+function createProjectEntry(obj = {}) {
+  const id = obj.id || uid();
+  const div = document.createElement('div');
+  div.className = 'entry';
+  div.dataset.id = id;
+  div.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+      <strong>Project</strong>
+      <div><button type="button" class="small-btn remove-project danger">Remove</button></div>
+    </div>
+    <div class="row">
+      <div class="form-group"><label>Project Title</label><input type="text" class="proj-title" placeholder="" value="${escapeHtml(obj.title||'')}" /></div>
+      <div class="form-group"><label>Tech / Tools</label><input type="text" class="proj-tech" placeholder="" value="${escapeHtml(obj.tech||'')}" /></div>
+    </div>
+    <div class="row">
+      <div class="form-group"><label>Start Date</label><input type="date" class="proj-start" value="${escapeHtml(obj.start||'')}" /></div>
+      <div class="form-group"><label>End Date</label><input type="date" class="proj-end" value="${escapeHtml(obj.end||'')}" /></div>
+    </div>
+    <div class="form-group"><label>Description</label><textarea class="proj-details" placeholder="What you built, your role, impact">${escapeHtml(obj.details||'')}</textarea></div>
+  `;
+  return div;
+}
+
+/* Job entry (individual) */
+function createJobEntry(obj = {}) {
+  const id = obj.id || uid();
+  const div = document.createElement('div');
+  div.className = 'entry';
+  div.dataset.id = id;
+  div.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+      <strong>Job</strong>
+      <div><button type="button" class="small-btn remove-job danger">Remove</button></div>
+    </div>
+    <div class="row">
+      <div class="form-group"><label>Position</label><input type="text" class="job-title" placeholder="" value="${escapeHtml(obj.title||'')}" /></div>
+      <div class="form-group"><label>Company</label><input type="text" class="job-company" placeholder="" value="${escapeHtml(obj.company||'')}" /></div>
+    </div>
+    <div class="row">
+      <div class="form-group"><label>Start Date</label><input type="date" class="job-start" value="${escapeHtml(obj.start||'')}" /></div>
+      <div class="form-group"><label>End Date</label><input type="date" class="job-end" value="${escapeHtml(obj.end||'')}" /></div>
+    </div>
+    <div class="form-group"><label>Responsibilities</label><textarea class="job-details" placeholder="Key responsibilities and impact">${escapeHtml(obj.details||'')}</textarea></div>
+  `;
+  return div;
+}
+
+/* ======== Render functions ======== */
+function renderList(container, arr, creator) {
+  container.innerHTML = '';
+  if (!arr || arr.length === 0) {
+    // add one empty entry by default (for easier UX)
+    container.appendChild(creator({}));
+  } else {
+    arr.forEach(obj => container.appendChild(creator(obj)));
+  }
+}
+
+/* ======== Collect & Save dynamic lists ======== */
+function collectEducation() {
+  const nodes = Array.from(educationList.querySelectorAll('.entry'));
+  const arr = nodes.map(n => ({
+    id: n.dataset.id,
+    course: (n.querySelector('.edu-course')?.value || '').trim(),
+    institution: (n.querySelector('.edu-institution')?.value || '').trim(),
+    start: (n.querySelector('.edu-start')?.value || '').trim(),
+    end: (n.querySelector('.edu-end')?.value || '').trim()
+  })).filter(x => x.course || x.institution || x.start || x.end);
+  setArr(ks.educationArr, arr);
+}
+
+function collectInternships() {
+  const nodes = Array.from(internshipList.querySelectorAll('.entry'));
+  const arr = nodes.map(n => ({
+    id: n.dataset.id,
+    title: (n.querySelector('.intern-title')?.value || '').trim(),
+    company: (n.querySelector('.intern-company')?.value || '').trim(),
+    start: (n.querySelector('.intern-start')?.value || '').trim(),
+    end: (n.querySelector('.intern-end')?.value || '').trim(),
+    details: (n.querySelector('.intern-details')?.value || '').trim()
+  })).filter(x => x.title || x.company || x.details || x.start || x.end);
+  setArr(ks.internshipsArr, arr);
+}
+
+function collectProjects() {
+  const nodes = Array.from(projectList.querySelectorAll('.entry'));
+  const arr = nodes.map(n => ({
+    id: n.dataset.id,
+    title: (n.querySelector('.proj-title')?.value || '').trim(),
+    tech: (n.querySelector('.proj-tech')?.value || '').trim(),
+    start: (n.querySelector('.proj-start')?.value || '').trim(),
+    end: (n.querySelector('.proj-end')?.value || '').trim(),
+    details: (n.querySelector('.proj-details')?.value || '').trim()
+  })).filter(x => x.title || x.tech || x.details || x.start || x.end);
+  setArr(ks.projectsArr, arr);
+}
+
+function collectJobs() {
+  const nodes = Array.from(jobList.querySelectorAll('.entry'));
+  const arr = nodes.map(n => ({
+    id: n.dataset.id,
+    title: (n.querySelector('.job-title')?.value || '').trim(),
+    company: (n.querySelector('.job-company')?.value || '').trim(),
+    start: (n.querySelector('.job-start')?.value || '').trim(),
+    end: (n.querySelector('.job-end')?.value || '').trim(),
+    details: (n.querySelector('.job-details')?.value || '').trim()
+  })).filter(x => x.title || x.company || x.details || x.start || x.end);
+  setArr(ks.jobsArr, arr);
+}
+
+/* ======== Image handling (DataURL) ======== */
+profileInput.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const dataUrl = ev.target.result;
+    preview.src = dataUrl;
+    preview.style.display = 'block';
+    try { localStorage.setItem(ks.profile, dataUrl); } catch(err) { console.warn('Image save failed', err); }
+  };
+  reader.readAsDataURL(file);
+});
+
+/* ======== Add buttons ======== */
+addEducationBtn.addEventListener('click', () => { educationList.appendChild(createEducationEntry({})); });
+addInternshipBtn.addEventListener('click', () => { internshipList.appendChild(createInternshipEntry({})); });
+addProjectBtn.addEventListener('click', () => { projectList.appendChild(createProjectEntry({})); });
+addJobBtn.addEventListener('click', () => { jobList.appendChild(createJobEntry({})); });
+
+/* ======== Delegated remove handlers ======== */
+educationList.addEventListener('click', e => {
+  if (e.target.classList.contains('remove-education')) {
+    const node = e.target.closest('.entry');
+    if (!node) return;
+    if (!confirm('Remove this education entry?')) return;
+    node.remove();
+  }
+});
+internshipList.addEventListener('click', e => {
+  if (e.target.classList.contains('remove-internship')) {
+    const node = e.target.closest('.entry');
+    if (!node) return;
+    if (!confirm('Remove this internship?')) return;
+    node.remove();
+  }
+});
+projectList.addEventListener('click', e => {
+  if (e.target.classList.contains('remove-project')) {
+    const node = e.target.closest('.entry');
+    if (!node) return;
+    if (!confirm('Remove this project?')) return;
+    node.remove();
+  }
+});
+jobList.addEventListener('click', e => {
+  if (e.target.classList.contains('remove-job')) {
+    const node = e.target.closest('.entry');
+    if (!node) return;
+    if (!confirm('Remove this job?')) return;
+    node.remove();
+  }
+});
+
+/* ======== Simple fields populate/save ======== */
+function populateSimple() {
+  const map = [
+    ['name', ks.name], ['address', ks.address], ['phone', ks.phone],
+    ['email', ks.email], ['about', ks.about], ['career', ks.career],
+    ['skills', ks.skills], ['references', ks.references], ['website', ks.website]
+  ];
+  map.forEach(([id, key]) => {
+    const v = localStorage.getItem(key);
+    if (v !== null && $(id)) $(id).value = v;
   });
+  const prof = localStorage.getItem(ks.profile);
+  if (prof) { preview.src = prof; preview.style.display = 'block'; }
+  const savedAt = localStorage.getItem(ks.savedAt);
+  if (savedAt) { const h = $('javascript_header'); if (h) h.innerText = `Last saved: ${new Date(savedAt).toLocaleString()}`; }
+}
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
+function saveSimple() {
+  localStorage.setItem(ks.name, $('name').value.trim());
+  localStorage.setItem(ks.address, $('address').value.trim());
+  localStorage.setItem(ks.phone, $('phone').value.trim());
+  localStorage.setItem(ks.email, $('email').value.trim());
+  localStorage.setItem(ks.about, $('about').value.trim());
+  localStorage.setItem(ks.career, $('career').value.trim());
+  localStorage.setItem(ks.skills, $('skills').value.trim());
+  localStorage.setItem(ks.references, $('references').value.trim());
+  localStorage.setItem(ks.website, $('website').value.trim());
+  localStorage.setItem(ks.savedAt, new Date().toISOString());
+}
 
-    // Clear old error
-    document.getElementById('name__error').textContent = '';
+/* ======== Reset ======== */
+resetBtn.addEventListener('click', () => {
+  if (!confirm('Clear saved resume data from this browser?')) return;
+  Object.values(ks).forEach(k => localStorage.removeItem(k));
+  preview.src = ''; preview.style.display = 'none';
+  form.reset();
+  educationList.innerHTML = ''; internshipList.innerHTML = ''; projectList.innerHTML = ''; jobList.innerHTML = '';
+  // re-render defaults
+  renderAll();
+  const h = $('javascript_header'); if (h) h.innerText = '';
+});
 
-    // Basic fields
-    const name = document.getElementById('name').value.trim();
-    const address = document.getElementById('address').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const about = document.getElementById('about').value.trim();
-    const career = document.getElementById('career').value.trim();
-    const skills = document.getElementById('skills').value.trim();
-    const references = document.getElementById('references').value.trim();
+/* ======== Submit handler ======== */
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  $('name__error').textContent = '';
+  const name = $('name').value.trim();
+  if (!name) { $('name__error').textContent = 'Name is required'; return; }
 
-    if (!name) {
-      document.getElementById('name__error').textContent = 'Name is required';
-      return;
-    }
+  // collect & save all lists
+  collectEducation();
+  collectInternships();
+  collectProjects();
+  collectJobs();
+  saveSimple();
 
-    // EDUCATION fields
-    const edu1_course = document.getElementById('edu1_course').value.trim();
-    const edu1_institution = document.getElementById('edu1_institution').value.trim();
-    const edu1_start = document.getElementById('edu1_start').value.trim();
-    const edu1_end = document.getElementById('edu1_end').value.trim();
+  // redirect to resume view
+  window.location.href = 'template1.html';
+});
 
-    const edu2_course = document.getElementById('edu2_course').value.trim();
-    const edu2_institution = document.getElementById('edu2_institution').value.trim();
-    const edu2_start = document.getElementById('edu2_start').value.trim();
-    const edu2_end = document.getElementById('edu2_end').value.trim();
+/* ======== On Load: render saved arrays into DOM ======== */
+function renderAll() {
+  // education
+  const ed = getArr(ks.educationArr);
+  renderList(educationList, ed, createEducationEntry);
 
-    let education = '';
+  // internships
+  const interns = getArr(ks.internshipsArr);
+  renderList(internshipList, interns, createInternshipEntry);
 
-    if (edu1_course || edu1_institution || edu1_start || edu1_end) {
-      education += `${edu1_course} — ${edu1_institution} (${edu1_start} - ${edu1_end})\n`;
-    }
+  // projects
+  const projs = getArr(ks.projectsArr);
+  renderList(projectList, projs, createProjectEntry);
 
-    if (edu2_course || edu2_institution || edu2_start || edu2_end) {
-      education += `${edu2_course} — ${edu2_institution} (${edu2_start} - ${edu2_end})\n`;
-    }
+  // jobs
+  const jobs = getArr(ks.jobsArr);
+  renderList(jobList, jobs, createJobEntry);
+}
 
-    // WORK EXPERIENCE fields
-    const job1_start = document.getElementById('job1_start').value.trim();
-    const job1_end = document.getElementById('job1_end').value.trim();
-    const job1_details = document.getElementById('job1_details').value.trim();
-
-    const job2_start = document.getElementById('job2_start').value.trim();
-    const job2_end = document.getElementById('job2_end').value.trim();
-    const job2_details = document.getElementById('job2_details').value.trim();
-
-    const job3_start = document.getElementById('job3_start').value.trim();
-    const job3_end = document.getElementById('job3_end').value.trim();
-    const job3_details = document.getElementById('job3_details').value.trim();
-
-    let experience = '';
-
-    if (job1_start || job1_end || job1_details) {
-      experience += `Most Recent Job (${job1_start} - ${job1_end})\n${job1_details}\n\n`;
-    }
-
-    if (job2_start || job2_end || job2_details) {
-      experience += `Past Job (${job2_start} - ${job2_end})\n${job2_details}\n\n`;
-    }
-
-    if (job3_start || job3_end || job3_details) {
-      experience += `Another Past Job (${job3_start} - ${job3_end})\n${job3_details}\n\n`;
-    }
-
-    // Store in localStorage with clear keys
-    localStorage.setItem('rb_profile', preview.src || '');
-    localStorage.setItem('rb_name', name);
-    localStorage.setItem('rb_address', address);
-    localStorage.setItem('rb_phone', phone);
-    localStorage.setItem('rb_email', email);
-    localStorage.setItem('rb_about', about);
-    localStorage.setItem('rb_career', career);
-    localStorage.setItem('rb_education', education);
-    localStorage.setItem('rb_experience', experience);
-    localStorage.setItem('rb_skills', skills);
-    localStorage.setItem('rb_references', references);
-
-    // Go to resume template page
-    window.location.href = 'template1.html';
-  });
+document.addEventListener('DOMContentLoaded', () => {
+  renderAll();
+  populateSimple();
+});
 </script>
-
 </body>
 </html>
